@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Network Dashboard</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <!-- Font Awesome Icons -->
+
+    <!-- Your CSS -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+
+  <body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="logo">
+          <i class="fa-solid fa-network-wired"></i> Network
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-item active" data-section="dashboard">
+          <i class="fa-solid fa-house nav-icon"></i>
+          <span class="label">Dashboard</span>
+        </button>
+
+        <button class="nav-item" data-section="scan">
+          <i class="fa-solid fa-wifi nav-icon"></i>
+          <span class="label">Scan Network</span>
+        </button>
+
+        <button class="nav-item" data-section="devices">
+          <i class="fa-solid fa-computer nav-icon"></i>
+          <span class="label">Devices</span>
+        </button>
+
+        <button class="nav-item" data-section="settings">
+          <i class="fa-solid fa-gear nav-icon"></i>
+          <span class="label">Settings</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="toggle-row">
+          <div class="toggle-label">Auto-scan</div>
+          <label class="mac-toggle">
+            <input type="checkbox" id="autoScanToggle" />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="toggle-row">
+          <div class="toggle-label">Show offline</div>
+          <label class="mac-toggle">
+            <input type="checkbox" id="showOfflineToggle" checked />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main">
+      <header class="titlebar">
+        <div class="title">Network Dashboard</div>
+        <div class="title-actions">
+          <button class="icon-btn" id="refreshBtn">⟳</button>
+          <button class="icon-btn" id="settingsBtn">⚙️</button>
+        </div>
+      </header>
+
+      <section class="content">
+        <div class="hero">
+          <!-- Left -->
+          <div class="hero-left">
+            <h2 class="section-heading">Host Info</h2>
+
+            <div class="interface-select">
+              <label for="ifaceDropdown">Interface</label>
+              <select id="ifaceDropdown" class="iface-dropdown">
+                <option>Loading...</option>
+              </select>
+            </div>
+
+            <div class="host-card">
+              <div class="host-ip" id="hostIp">Loading…</div>
+              <div class="host-interface" id="hostInterface">Interface: —</div>
+              <div class="host-mac" id="hostMac">MAC: —</div>
+
+              <div class="host-controls">
+                <button class="cta" id="copyBtn">Copy IP</button>
+                <button class="ghost" id="openBtn">Open in Browser</button>
+              </div>
+            </div>
+
+            <div class="info-grid">
+              <div class="info-tile">
+                <div class="tile-title">Netmask</div>
+                <div class="tile-value" id="netmask">—</div>
+              </div>
+
+              <div class="info-tile">
+                <div class="tile-title">CIDR</div>
+                <div class="tile-value" id="cidr">—</div>
+              </div>
+
+              <div class="info-tile">
+                <div class="tile-title">Broadcast</div>
+                <div class="tile-value" id="broadcast">—</div>
+              </div>
+
+              <div class="info-tile">
+                <div class="tile-title">Gateway</div>
+                <div class="tile-value" id="gateway">—</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right -->
+          <div class="hero-right">
+            <h2 class="section-heading">Quick Actions</h2>
+
+            <div class="quick-actions">
+              <button class="action">Ping Sweep</button>
+              <button class="action">Port Scan</button>
+              <button class="action">Export CSV</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="section-placeholder" class="section-placeholder"></div>
+
+        <section class="dashboard">
+          <h2 class="section-heading" style="margin-top: 30px">
+            Live Device List
+          </h2>
+
+          <div class="device-list-card">
+            <div class="device-list-header">
+              <span>Devices Detected</span>
+              <button class="refresh-devices-btn" id="refreshDevicesBtn">
+                <i class="fa-solid fa-rotate"></i>
+              </button>
+            </div>
+
+            <table class="device-table">
+              <thead>
+                <tr>
+                  <th>Status</th>
+                  <th>IP Address</th>
+                  <th>MAC Address</th>
+                  <th>Vendor</th>
+                  <th>Latency</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="deviceTableBody">
+                <tr>
+                  <td
+                    colspan="6"
+                    style="text-align: center; padding: 20px; color: #6b7280"
+                  >
+                    Scanning… please wait
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <!-- Dock -->
+    <div class="dock">
+      <div class="dock-inner">
+        <button class="dock-item">
+          <i class="fa-solid fa-house dock-icon"></i>
+        </button>
+
+        <button class="dock-item">
+          <i class="fa-solid fa-wifi dock-icon"></i>
+        </button>
+
+        <button class="dock-item">
+          <i class="fa-solid fa-computer dock-icon"></i>
+        </button>
+
+        <button class="dock-item">
+          <i class="fa-solid fa-gear dock-icon"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- JS -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script
+      src="https://kit.fontawesome.com/f077b295a0.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

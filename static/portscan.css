@@ -1,0 +1,143 @@
+/* ==========================================================
+   PORTSCAN — MODERN MACOS STYLE
+========================================================== */
+
+/* Main card container */
+.scan-card {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  padding: 22px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.45);
+  box-shadow:
+      0 12px 30px rgba(0, 0, 0, 0.10),
+      inset 0 1px 0 rgba(255,255,255,0.6);
+  transition: 0.3s ease;
+}
+
+.scan-card:hover {
+  box-shadow:
+      0 18px 40px rgba(0, 0, 0, 0.18),
+      inset 0 1px 0 rgba(255,255,255,0.6);
+  transform: translateY(-2px);
+}
+
+/* Inputs */
+.scan-inputs .scan-input {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.12);
+  background: rgba(255,255,255,0.7);
+  font-size: 15px;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.06);
+  transition: .2s;
+}
+
+.scan-input:focus {
+  outline: none;
+  border-color: #4dabff;
+  box-shadow: 0 0 0 4px rgba(77,171,255,0.25);
+}
+
+/* Buttons */
+.scan-inputs .cta,
+.scan-inputs .ghost {
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.25s ease;
+}
+
+.scan-inputs .cta {
+  background: linear-gradient(135deg,#4dabff,#1c8aff);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(30,144,255,0.25);
+}
+
+.scan-inputs .cta:hover {
+  box-shadow: 0 6px 16px rgba(30,144,255,0.35);
+  transform: translateY(-1px);
+}
+
+.scan-inputs .ghost {
+  background: rgba(255,255,255,0.6);
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+.scan-inputs .ghost:hover {
+  background: rgba(255,255,255,0.9);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================
+   PROGRESS BAR — GLOWING CYAN STYLE
+========================================================== */
+
+.scan-progress {
+  padding: 16px;
+  border-radius: 15px;
+  background: rgba(0,0,0,0.03);
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.08);
+  margin-top: 18px;
+}
+
+.progress-bar-wrapper {
+  width: 100%;
+  height: 14px;
+  background: rgba(0,0,0,0.12);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg,#00e1ff,#1c8aff);
+  box-shadow:
+     0 0 10px rgba(0,229,255,0.6),
+     0 0 20px rgba(30,144,255,0.4);
+  transition: width .15s ease-in-out;
+}
+
+/* ==========================================================
+   RESULTS TABLE — NEAT MODERN STYLE
+========================================================== */
+
+.scan-result table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+  margin-top: 14px;
+}
+
+.scan-result th {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #4a4a4a;
+  padding: 6px 8px;
+}
+
+.scan-result td {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(6px);
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+  transition: .25s;
+}
+
+.scan-result tr:hover td {
+  background: rgba(255,255,255,1);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  transform: translateY(-1px);
+}
+
+.hidden { display:none; }

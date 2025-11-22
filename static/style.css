@@ -441,3 +441,12 @@ body{
 .device-action-btn:hover {
   background: rgba(0,0,0,0.05);
 }
+
+
+.page.hidden {
+    display: none;
+}
+.page.active {
+    display: block;
+}
+

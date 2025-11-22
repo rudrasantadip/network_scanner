@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Port Scanner</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <!-- reuse your baseline CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='portscan.css') }}">
+</head>
+<body class="scan-page">
+
+  <main style="max-width:980px;margin:28px auto;padding:18px;">
+    <h1 style="margin:0 0 12px">Port Scanner</h1>
+
+    <div class="scan-card">
+      <div class="scan-inputs" style="display:flex;gap:10px;flex-wrap:wrap;">
+        <input id="scanIp" class="scan-input" placeholder="Target IP" value="{{ ip }}">
+        <input id="scanPorts" class="scan-input" placeholder="Ports (e.g., 22,80,443)">
+        <button id="startScanBtn" class="cta">Scan</button>
+        <button id="scanAllBtn" class="ghost">Scan All Ports</button>
+      </div>
+
+      <div id="scanProgress" class="scan-progress hidden" style="margin-top:16px;">
+        <div class="progress-text">Starting...</div>
+        <div class="progress-bar-wrapper" aria-hidden="true">
+          <div class="progress-bar" id="progressBar" style="width:0%"></div>
+        </div>
+      </div>
+
+      <div id="scanResult" class="scan-result" style="margin-top:18px;">
+        Enter IP and click Scan.
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Jinja inject passed ip (empty string if none)
+    const passedIp = "{{ ip }}";
+  </script>
+
+  <script src="{{ url_for('static', filename='portscan.js') }}"></script>
+</body>
+</html>

@@ -5,16 +5,11 @@
     <title>Network Dashboard</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-    <!-- Font Awesome Icons -->
-
-    <!-- Your CSS -->
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
-    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
   </head>
 
   <body>
+
     <!-- Sidebar -->
     <aside class="sidebar">
       <div class="sidebar-top">
@@ -64,144 +59,116 @@
       </div>
     </aside>
 
-    <!-- Main content -->
+    <!-- Main Content -->
     <main class="main">
+
       <header class="titlebar">
         <div class="title">Network Dashboard</div>
         <div class="title-actions">
-          <button class="icon-btn" id="refreshBtn">⟳</button>
-          <button class="icon-btn" id="settingsBtn">⚙️</button>
+          <button class="icon-btn" id="refreshBtn"><i class="fa-solid fa-arrows-rotate"></i></button>
+          <button class="icon-btn" id="settingsBtn"><i class="fa-solid fa-gear"></i></button>
         </div>
       </header>
 
       <section class="content">
-        <div class="hero">
-          <!-- Left -->
-          <div class="hero-left">
-            <h2 class="section-heading">Host Info</h2>
 
-            <div class="interface-select">
-              <label for="ifaceDropdown">Interface</label>
-              <select id="ifaceDropdown" class="iface-dropdown">
-                <option>Loading...</option>
-              </select>
-            </div>
+        <!-- ====================== DASHBOARD PAGE ====================== -->
+        <section id="dashboardPage" class="page active">
 
-            <div class="host-card">
-              <div class="host-ip" id="hostIp">Loading…</div>
-              <div class="host-interface" id="hostInterface">Interface: —</div>
-              <div class="host-mac" id="hostMac">MAC: —</div>
+          <div class="hero">
 
-              <div class="host-controls">
-                <button class="cta" id="copyBtn">Copy IP</button>
-                <button class="ghost" id="openBtn">Open in Browser</button>
+            <!-- Left -->
+            <div class="hero-left">
+              <h2 class="section-heading">Host Info</h2>
+
+              <div class="interface-select">
+                <label for="ifaceDropdown">Interface</label>
+                <select id="ifaceDropdown" class="iface-dropdown">
+                  <option>Loading...</option>
+                </select>
+              </div>
+
+              <div class="host-card">
+                <div class="host-ip" id="hostIp">Loading…</div>
+                <div class="host-interface" id="hostInterface">Interface: —</div>
+                <div class="host-mac" id="hostMac">MAC: —</div>
+
+                <div class="host-controls">
+                  <button class="cta" id="copyBtn">Copy IP</button>
+                  <button class="ghost" id="openBtn">Open in Browser</button>
+                </div>
+              </div>
+
+              <div class="info-grid">
+                <div class="info-tile"><div class="tile-title">Netmask</div><div class="tile-value" id="netmask">—</div></div>
+                <div class="info-tile"><div class="tile-title">CIDR</div><div class="tile-value" id="cidr">—</div></div>
+                <div class="info-tile"><div class="tile-title">Broadcast</div><div class="tile-value" id="broadcast">—</div></div>
+                <div class="info-tile"><div class="tile-title">Gateway</div><div class="tile-value" id="gateway">—</div></div>
               </div>
             </div>
 
-            <div class="info-grid">
-              <div class="info-tile">
-                <div class="tile-title">Netmask</div>
-                <div class="tile-value" id="netmask">—</div>
-              </div>
-
-              <div class="info-tile">
-                <div class="tile-title">CIDR</div>
-                <div class="tile-value" id="cidr">—</div>
-              </div>
-
-              <div class="info-tile">
-                <div class="tile-title">Broadcast</div>
-                <div class="tile-value" id="broadcast">—</div>
-              </div>
-
-              <div class="info-tile">
-                <div class="tile-title">Gateway</div>
-                <div class="tile-value" id="gateway">—</div>
+            <!-- Right -->
+            <div class="hero-right">
+              <h2 class="section-heading">Quick Actions</h2>
+              <div class="quick-actions">
+                <button class="action">Ping Sweep</button>
+                <button class="action">Port Scan</button>
+                <button class="action">Export CSV</button>
               </div>
             </div>
+
           </div>
 
-          <!-- Right -->
-          <div class="hero-right">
-            <h2 class="section-heading">Quick Actions</h2>
+          <!-- Live Device List -->
+          <section class="dashboard">
+            <h2 class="section-heading" style="margin-top: 30px">Live Device List</h2>
 
-            <div class="quick-actions">
-              <button class="action">Ping Sweep</button>
-              <button class="action">Port Scan</button>
-              <button class="action">Export CSV</button>
+            <div class="device-list-card">
+              <div class="device-list-header">
+                <span>Devices Detected</span>
+                <button class="refresh-devices-btn" id="refreshDevicesBtn">
+                  <i class="fa-solid fa-rotate"></i>
+                </button>
+              </div>
+
+              <table class="device-table">
+                <thead>
+                  <tr>
+                    <th>Status</th>
+                    <th>IP Address</th>
+                    <th>MAC Address</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+
+                <tbody id="deviceTableBody">
+                  <tr><td colspan="6" style="text-align:center; padding:20px;">Loading…</td></tr>
+                </tbody>
+              </table>
             </div>
-          </div>
-        </div>
+          </section>
 
-        <div id="section-placeholder" class="section-placeholder"></div>
-
-        <section class="dashboard">
-          <h2 class="section-heading" style="margin-top: 30px">
-            Live Device List
-          </h2>
-
-          <div class="device-list-card">
-            <div class="device-list-header">
-              <span>Devices Detected</span>
-              <button class="refresh-devices-btn" id="refreshDevicesBtn">
-                <i class="fa-solid fa-rotate"></i>
-              </button>
-            </div>
-
-            <table class="device-table">
-              <thead>
-                <tr>
-                  <th>Status</th>
-                  <th>IP Address</th>
-                  <th>MAC Address</th>
-                  <th>Vendor</th>
-                  <th>Latency</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-
-              <tbody id="deviceTableBody">
-                <tr>
-                  <td
-                    colspan="6"
-                    style="text-align: center; padding: 20px; color: #6b7280"
-                  >
-                    Scanning… please wait
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
         </section>
+
+        <!-- ====================== OTHER PAGES ====================== -->
+
+        <section id="scanPage" class="page hidden">
+          <h2>Scan Network</h2>
+        </section>
+
+        <section id="devicesPage" class="page hidden">
+          <h2>Devices</h2>
+        </section>
+
+        <section id="settingsPage" class="page hidden">
+          <h2>Settings</h2>
+        </section>
+
       </section>
     </main>
 
-    <!-- Dock -->
-    <div class="dock">
-      <div class="dock-inner">
-        <button class="dock-item">
-          <i class="fa-solid fa-house dock-icon"></i>
-        </button>
-
-        <button class="dock-item">
-          <i class="fa-solid fa-wifi dock-icon"></i>
-        </button>
-
-        <button class="dock-item">
-          <i class="fa-solid fa-computer dock-icon"></i>
-        </button>
-
-        <button class="dock-item">
-          <i class="fa-solid fa-gear dock-icon"></i>
-        </button>
-      </div>
-    </div>
-
-    <!-- JS -->
     <script src="{{ url_for('static', filename='script.js') }}"></script>
-    <script
-      src="https://kit.fontawesome.com/f077b295a0.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/f077b295a0.js" crossorigin="anonymous"></script>
+
   </body>
 </html>

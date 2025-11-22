@@ -1,4 +1,6 @@
 from scapy.all import ARP, Ether, srp
+from utils.scanner_utils import scan_network
+
 
 def arp_scan(network, iface):
     arp = ARP(pdst=network)
@@ -24,10 +26,8 @@ def arp_scan(network, iface):
 
 if __name__ == "__main__":
     network = "192.168.0.0/24" 
-    iface = "Wi-Fi"              
+    iface = "Wi-Fi"
 
-    nodes = arp_scan(network, iface)
+    print(scan_network())
 
-    print("=== Active Hosts ===")
-    for host in nodes:
-        print(f"{host['ip']}  -->  {host['mac']}")
+   

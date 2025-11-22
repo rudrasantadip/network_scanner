@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ping Tool</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='ping.css') }}"
+    />
+  </head>
+
+  <body class="ping-page">
+    <div class="ping-container">
+      <h2 class="section-heading">Ping Host</h2>
+
+      <div class="ping-card">
+        <input
+          type="text"
+          id="pingInput"
+          class="ping-input"
+          placeholder="Enter IP or hostname"
+          value="{{ ip }}"
+        />
+
+        <button id="pingBtn" class="cta">Ping</button>
+      </div>
+
+      <div id="pingResult" class="ping-result">Enter an IP and click Ping.</div>
+    </div>
+
+    <script>
+      const passedIp = "{{ ip }}";
+      console.log(passedIp);
+    </script>
+
+    <script src="{{ url_for('static', filename='ping.js') }}"></script>
+  </body>
+</html>
